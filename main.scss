@@ -1,0 +1,107 @@
+// Variables
+$primary-color: #3498db;
+$secondary-color: #2ecc71;
+$font-stack: Helvetica, sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;700&display=swap');
+
+$open-sans: 'Open Sans', sans-serif;
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap');
+
+$roboto: 'Roboto', sans-serif;
+
+body {
+    font-family: sans-serif;
+    font: 100% $roboto;
+    color: white;
+    
+}
+
+h1, h2, h3 {
+    // font: 100% $open-sans;
+    color: black;
+    font-weight: 400;
+}
+
+h4 {
+    font: 100% $roboto;
+    color: $secondary-color;
+}
+
+
+// Mixins
+@mixin border-radius($radius) {
+    -webkit-border-radius: $radius;
+         -moz-border-radius: $radius;
+            -ms-border-radius: $radius;
+                    border-radius: $radius;
+}
+
+// Nesting
+nav {
+    ul {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    li { 
+        display: inline-block; 
+    }
+
+    a {
+        display: block;
+        padding: 6px 12px;
+        text-decoration: none;
+    }
+}
+
+$debug: true;
+// $debug: false;
+
+.test {
+    background: if($debug, red, transparent);
+}
+
+.text-shadow{
+    text-shadow: 2px 2px 10px #000;
+}
+
+.fullscreen{
+    width: 100vw;
+    height: 100vh;
+}
+
+
+// Extend/Inheritance
+%message-shared {
+    border: 1px solid #ccc;
+    padding: 10px;
+    color: #333;
+}
+
+.message {
+    @extend %message-shared;
+}
+
+.success {
+    @extend %message-shared;
+    border-color: $secondary-color;
+}
+
+.error {
+    @extend %message-shared;
+    border-color: red;
+}
+
+// Using variables and mixins
+.button {
+    font: {
+        family: $font-stack;
+        size: 16px;
+        weight: bold;
+    }
+
+    color: white;
+    background-color: $primary-color;
+    @include border-radius(5px);
+}
